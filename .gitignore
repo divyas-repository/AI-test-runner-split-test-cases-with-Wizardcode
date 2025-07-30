@@ -1,0 +1,7 @@
+# Ignore node_modules and model files
+node_modules/
+Models/
+dist/
+playwright-report/
+test-results/
+*.gguf
