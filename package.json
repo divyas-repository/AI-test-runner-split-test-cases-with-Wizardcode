@@ -1,0 +1,20 @@
+{
+  "name": "ai-test-runner",
+  "version": "1.0.1",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.8",
+    "gpt4all": "^4.0.0",
+    "open": "^9.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.0",
+    "@types/ejs": "^3.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2"
+  }
+}
