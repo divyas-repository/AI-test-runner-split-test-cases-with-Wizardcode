@@ -11,3 +11,13 @@ Test Case: Verify the user is redirected to the Application progress page by cli
 Steps:
 1. Launch the application https://nada-hei.onrender.com/
 2. Click on "Apply Now"
+
+Test Case: Verify user can fill out the application form and click Next
+Steps:
+1. Launch the application https://nada-hei.onrender.com/
+2. Click on "Apply Now"
+3. Enter First Name: John (Valid)
+4. Enter Last Name: Smith (Valid)
+5. Enter Email address: john.doe@example.com (Valid)
+6. Enter Mobile number: 1234567890 (Valid)
+7. Click on "Next" button

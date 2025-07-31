@@ -14,3 +14,15 @@ test('Verify the user is redirected to the Application progress page by clicking
   // Add further assertions here as needed, e.g.:
   // await expect(page).toHaveURL(/.*progress/);
 });
+
+test('Verify user can fill out the application form and click Next', async ({ page }) => {
+  await page.goto('https://nada-hei.onrender.com/');
+  await page.click('text=Apply Now');
+  await page.getByPlaceholder('Enter First Name').fill('John'); // Valid
+  await page.getByPlaceholder('Enter Last Name').fill('Smith'); // Valid
+  await page.getByPlaceholder('Enter email address').fill('john.doe@example.com'); // Valid
+  await page.getByPlaceholder('Enter mobile number').fill('1234567890'); // Valid
+  await page.click('text=Next');
+  // Add further assertions here as needed, e.g.:
+  // await expect(page).toHaveURL(/.*next-step/);
+});
