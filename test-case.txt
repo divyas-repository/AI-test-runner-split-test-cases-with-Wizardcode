@@ -6,3 +6,8 @@ Steps:
 4. Enter password "SuperSecretPassword!"
 5. Click "Login"
 6. Verify dashboard appears
+
+Test Case: Verify the user is redirected to the Application progress page by clicking on Apply Now.
+Steps:
+1. Launch the application https://nada-hei.onrender.com/
+2. Click on "Apply Now"
