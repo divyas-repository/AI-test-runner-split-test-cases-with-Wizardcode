@@ -28,10 +28,12 @@ ai-test-runner/
 
 ## 🚀 Features
 
-* Converts manual test steps to code using GPT4All (Mistral model)
-* Uses Playwright for running tests
-* Auto-generates an HTML report
-* Automatically opens report if test fails
+* Converts manual test steps to Playwright code using GPT4All (Mistral model)
+* Infers selectors for form fields using field labels, placeholders, or aria-labels (no manual selector inspection required)
+* Supports multiple test cases in `test-case.txt`
+* Uses Playwright for running tests in headed mode
+* Auto-generates an HTML report (`playwright-report/report.html`)
+* Automatically opens report if any test fails
 * Written in TypeScript
 
 ---
@@ -89,25 +91,26 @@ Steps:
 ## ▶️ How to Run
 
 ```bash
-npm start
+npx ts-node src/generator.ts
+npx playwright test --headed --reporter=html
+Copy-Item -Path "playwright-report\index.html" -Destination "playwright-report\report.html" -Force
 ```
 
-This runs:
+This workflow:
 
-* `src/index.ts`:
-  * Reads manual test
-  * Converts it using GPT4All
-  * Saves `generated-test.spec.ts`
-  * Executes test with Playwright
-  * Generates HTML report
-  * Opens the report if the test fails
+* Reads all manual test cases from `test-case.txt`
+* Converts each to Playwright code using GPT4All (with improved selector inference)
+* Saves to `generated-test.spec.ts`
+* Executes all tests in headed mode
+* Generates HTML report at `playwright-report/report.html`
+* Opens the report if any test fails
 
 ---
 
 ## 📄 Output
 
-* ✅ `generated-test.spec.ts`: The Playwright test generated from your prompt.
-* ✅ `playwright-report/report.html`: The test execution report.
+* ✅ `generated-test.spec.ts`: The Playwright test generated from your manual test cases.
+* ✅ `playwright-report/report.html`: The test execution report (always up-to-date after each run).
 * ✅ Report opens automatically on test failure.
 
 ---
