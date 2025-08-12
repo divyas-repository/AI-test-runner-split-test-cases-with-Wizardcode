@@ -2,6 +2,7 @@
 node_modules/
 Models/
 dist/
-playwright-report/
+test-results/
+*.gguf
 test-results/
 *.gguf

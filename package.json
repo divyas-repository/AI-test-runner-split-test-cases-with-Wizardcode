@@ -3,13 +3,26 @@
   "version": "1.0.1",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/main.ts",
+    "from-excel": "ts-node src/main.ts from-excel", 
+    "from-csv": "ts-node src/main.ts from-excel",
+    "generate-from-excel": "ts-node src/excel-generator.ts",
+    "generate-batches": "ts-node src/batch-generator.ts",
+    "locks": "ts-node src/main.ts locks",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:headed": "npx playwright test --headed",
+    "test-batch-1": "npx playwright test generated/test-case-batch-1.ts",
+    "test-batch-2": "npx playwright test generated/test-case-batch-2.ts"
   },
   "dependencies": {
+    "commander": "^14.0.0",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.8",
     "gpt4all": "^4.0.0",
-    "open": "^9.1.0"
+    "open": "^9.1.0",
+    "tsx": "^4.20.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@playwright/test": "^1.43.0",

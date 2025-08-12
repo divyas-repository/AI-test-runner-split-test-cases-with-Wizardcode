@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Run Playwright batch 3 tests (headed, HTML report)",
+			"command": "npx playwright test generated/test-case-batch-3.ts --headed --reporter=html",
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
