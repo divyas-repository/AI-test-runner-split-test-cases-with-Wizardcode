@@ -1,0 +1,242 @@
+CRITICAL LESSONS FOR PLAYWRIGHT TEST GENERATION:
+
+=== CRITICAL LLM OUTPUT RULES (MOST IMPORTANT) ===
+1. NEVER include explanatory text outside of code blocks
+2. NEVER add comments or descriptions between test functions
+3. ONLY generate valid TypeScript/Playwright code
+4. NO narrative text, explanations, or instructions in the output
+5. Each test function must be complete and syntactically correct
+6. Use // for comments INSIDE functions only
+7. NO describe() blocks - use individual test() functions only
+
+=== URL REQUIREMENTS (MOST IMPORTANT) ===
+CRITICAL: ONLY use https://nada-hei.onrender.com/ - NO OTHER URLS
+- ALL tests must start with: await page.goto('https://nada-hei.onrender.com/');
+- NEVER use demo URLs like policygenius.com, example.com, or any other URLs
+- This is the actual application being tested
+
+=== DROPDOWN/SELECT ELEMENT PATTERNS ===
+1. PROPERTY TYPE DROPDOWN:
+   - Look for text like "Select property type" - this is usually a LABEL that needs to be clicked
+   - Use multiple strategies with fallbacks:
+     * Strategy 1: await page.locator('text="Select property type"').click();
+     * Strategy 2: await page.locator('select, [role="combobox"], .dropdown').first().click();
+     * Strategy 3: await page.locator('[class*="property"], [id*="property"]').first().click();
+   - Always wait after clicking dropdown: await page.waitForTimeout(1500);
+   - Then click the option: await page.locator('text="Single Family"').click();
+
+2. DROPDOWN BEST PRACTICES:
+   - Always use .first() to avoid strict mode violations
+   - Add debugging screenshots: await page.screenshot({ path: 'dropdown-debug.png' });
+   - Use console.log for each strategy attempt
+   - Handle custom React/Vue dropdowns with [role="combobox"]
+
+=== RADIO BUTTON PATTERNS ===
+1. CREDIT SCORE QUESTION "Is your credit score above 500?":
+   - Question appears as exact text - look for it first
+   - Use multiple strategies:
+     * Strategy 1: Find question container, then radio inside it
+     * Strategy 2: await page.locator('label:has-text("Yes")').first().click();
+     * Strategy 3: await page.locator('input[type="radio"][value="yes"]').first().click();
+   - Always use .first() for radio buttons to avoid ambiguity
+
+2. RADIO BUTTON BEST PRACTICES:
+   - Look for question text first to find the right section
+   - Radio values can be "yes", "Yes", "true", or "1"
+   - Use label clicks when possible: label:has-text("Yes")
+   - Add debugging to see what's available on page
+
+=== FORM NAVIGATION PATTERNS ===
+1. WAIT FOR SECTIONS:
+   - Use page.waitForFunction() for dynamic content
+   - Look for multiple indicators: text, inputs, or form elements
+   - Example: await page.waitForFunction(() => document.querySelector('input[type="radio"]') !== null);
+
+2. STEP TRANSITIONS:
+   - Always wait 2 seconds before interacting: await page.waitForTimeout(2000);
+   - Take screenshots before critical actions for debugging
+   - Use robust Next button clicking: await page.locator('text="Next"').click();
+
+=== SELECTOR STRATEGIES ===
+1. PRIORITY ORDER:
+   - getByLabel() - best for form inputs
+   - getByPlaceholder() - good for input fields  
+   - getByRole() - good for buttons/interactive elements
+   - text locators - reliable for buttons and links
+   - CSS selectors - last resort
+
+2. FALLBACK PATTERNS:
+   - Always implement 3-4 fallback strategies
+   - Log each strategy attempt with console.log
+   - Take screenshots when strategies fail
+   - Use attribute-based selectors as fallbacks
+
+=== ERROR HANDLING ===
+1. DEBUGGING APPROACH:
+   - Add screenshots before critical interactions
+   - Use descriptive console.log messages
+   - Implement graceful degradation
+   - Don't fail silently - log warnings
+
+2. TIMEOUT MANAGEMENT:
+   - Use appropriate timeouts: { timeout: 5000 }
+   - Set test.setTimeout(60000) for longer tests
+   - Add waitForTimeout between interactions
+
+=== WEBSITE-SPECIFIC PATTERNS ===
+1. NADA APPLICATION FLOW:
+   - Contact Info → Property Details → Financial Info → Additional Questions
+   - Each step has a "Next" button
+   - Use unique suffixes for test data: Date.now() + '-' + Math.random()
+   - Property types include "Single Family", "Condo", "Townhouse"
+
+2. FORM FILLING BEST PRACTICES:
+   - Fill required fields first
+   - Use realistic test data
+   - Handle dynamic form validation
+   - Wait for form validation to complete
+
+NEVER USE:
+- .screenshot() calls in generated code - STRICTLY FORBIDDEN
+- Hard-coded selectors without fallbacks
+- Synchronous operations without await
+- Multiple identical import statements
+
+CRITICAL: NO SCREENSHOTS ALLOWED
+- NEVER add page.screenshot() calls in any test code
+- Screenshots cause test crashes and failures
+- All debugging should use console.log instead
+- Screenshot functionality is disabled in playwright.config.ts
+
+PHONE NUMBER FORMATTING:
+- Always use 10-digit US phone format: 555123XXXX
+- Never use spaces, dashes, or parentheses in phone numbers
+- Use const mobile = `555123${uniqueSuffix}`; pattern
+- uniqueSuffix should be 4 digits from Date.now().toString().slice(-4)
+
+=== SUCCESSFUL FORM AUTOMATION PATTERNS (PROVEN WORKING) ===
+
+1. NADA APPLICATION FORM FLOW:
+   Complete flow: Contact → Property → Credit Score → Address
+   
+   URLs:
+   - Contact: /apply/contact
+   - Property: /apply/home-value  
+   - Credit Score: /apply/credit-score
+   - Address: /apply/address
+
+2. CONTACT FORM (WORKING SELECTORS):
+   - First Name: page.getByPlaceholder('Enter First Name')
+   - Last Name: page.getByPlaceholder('Enter Last Name')
+   - Email: page.getByPlaceholder('Enter email address')
+   - Mobile: page.getByPlaceholder('Enter mobile number')
+   - Previous Application: page.locator('input[name="hasAppliedBefore"]').last().click()
+   - Navigation: await page.waitForURL('**/apply/contact', { timeout: 30000 })
+
+3. PROPERTY FORM (WORKING SELECTORS):
+   - Home Value: page.getByPlaceholder('Enter home value')
+   - Mortgage Balance: page.getByPlaceholder('Enter mortgage balance')
+   - Property Type Dropdown: page.locator('[role="combobox"]').click()
+   - Property Type Selection: page.locator('[role="option"]').first().click()
+   - Navigation: await page.waitForURL('**/apply/home-value', { timeout: 30000 })
+
+4. CREDIT SCORE FORM (WORKING SELECTORS):
+   - Credit Score Selection: page.locator('input[name="creditScore"]').first().click()
+   - Navigation: await page.waitForURL('**/apply/credit-score', { timeout: 30000 })
+
+5. ADDRESS FORM (WORKING SELECTORS):
+   - Property Address: page.getByPlaceholder('Property Address')
+   - Navigation: await page.waitForURL('**/apply/address', { timeout: 30000 })
+
+=== CRITICAL SUCCESS PATTERNS ===
+
+1. PHONE NUMBER VALIDATION FIX:
+   - BEFORE (BROKEN): const mobile = `123456789${uniqueSuffix}`; // 13 digits, fails validation
+   - AFTER (WORKING): const mobile = `555123${uniqueSuffix}`; // 10 digits, passes validation
+
+2. MATERIAL-UI DROPDOWN HANDLING:
+   - Use: page.locator('[role="combobox"]').click()
+   - Then: page.locator('[role="option"]').first().click()
+   - NOT: text="Select property type" (doesn't work with Material-UI)
+
+3. PROPER NAVIGATION WAITING:
+   - Always use: await page.waitForURL('**/apply/PAGENAME', { timeout: 30000 })
+   - Add delays: await page.waitForTimeout(1000) after dropdown clicks
+   - Use page.getByRole('button', { name: /next/i }).click() for navigation
+
+4. ROBUST ERROR HANDLING:
+   - Wrap form interactions in try-catch blocks
+   - Use multiple selector strategies with fallbacks
+   - Add proper timeout handling for form loads
+
+=== WORKING HELPER FUNCTION TEMPLATE ===
+
+async function fillContactAndHomeshares(page: any, uniqueSuffix: string) {
+  const firstName = `John${uniqueSuffix}`;
+  const lastName = `Smith${uniqueSuffix}`;
+  const email = `john.smith${uniqueSuffix}@example.com`;
+  const mobile = `555123${uniqueSuffix}`; // CRITICAL: 10-digit format
+  
+  try {
+    await page.waitForSelector('input[placeholder*="First Name"]', { timeout: 10000 });
+    await page.getByPlaceholder('Enter First Name').fill(firstName);
+    await page.getByPlaceholder('Enter Last Name').fill(lastName);
+    await page.getByPlaceholder('Enter email address').fill(email);
+    await page.getByPlaceholder('Enter mobile number').fill(mobile);
+    await page.waitForTimeout(1000);
+    await page.locator('input[name="hasAppliedBefore"]').last().click();
+  } catch (error) {
+    console.error('❌ Error in fillContactAndHomeshares:', error);
+    throw error;
+  }
+}
+
+=== TEST LOCKING SYSTEM (IMPLEMENTED) ===
+
+1. LOCK FILE STRUCTURE:
+   - Location: test-locks.json in project root
+   - Format: Array of test objects with locked status
+   - Purpose: Prevent regeneration of working tests
+
+2. LOCK CRITERIA:
+   - Tests marked as "passed" with executionStatus
+   - locked: true prevents LLM regeneration
+   - Saves LLM cycles and protects working code
+
+=== COMPLETE SUCCESS SUMMARY FOR FUTURE LLM GENERATIONS ===
+
+🎯 PROJECT STATUS: 14/14 tests locked and working (100% success rate)
+
+🔧 CRITICAL FIXES APPLIED:
+1. Phone validation: 555123XXXX format (10 digits) - ESSENTIAL
+2. Material-UI dropdown handling: [role="combobox"] and [role="option"]
+3. Proper URL navigation: waitForURL with timeout patterns
+4. Form selector strategy: getByPlaceholder with exact text matches
+5. Error handling: try-catch blocks with fallback strategies
+
+🎯 NADA APPLICATION AUTOMATION (PROVEN WORKING):
+- Apply Now: getByRole('button', { name: /apply.*now/i }).first().click()
+- Contact Form: All placeholders work (Enter First Name, Enter email address, etc.)
+- Property Form: Home value, mortgage balance, Material-UI property type dropdown
+- Credit Score: Radio button selection with input[name="creditScore"]
+- Address: Property address input completes the flow
+
+🚨 NEVER FORGET THESE CRITICAL PATTERNS:
+1. Phone numbers MUST be 555123XXXX format (10 digits, no other format works)
+2. Material-UI dropdowns require [role="combobox"] and [role="option"] selectors
+3. Always use waitForURL with proper timeout (30000ms) for navigation
+4. Contact form placeholders are exact: "Enter First Name", "Enter Last Name"
+5. Property form uses getByPlaceholder for "Enter home value" and "Enter mortgage balance"
+
+💡 LLM GENERATION IMPROVEMENTS:
+- Enhanced prompts prevent syntax contamination
+- Explicit rules against explanatory text outside code blocks
+- Phone formatting guidance integrated into all prompts
+- Proven selector patterns included in generation templates
+
+🔒 LOCKING SYSTEM ACTIVE:
+- All working tests protected from regeneration
+- Smart resource usage - only new/failed tests processed
+- Performance optimized for future runs
+
+This knowledge base ensures future LLM generations will use proven working patterns and avoid previously encountered issues.
