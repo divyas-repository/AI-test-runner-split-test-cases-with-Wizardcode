@@ -1,0 +1,8 @@
+# Ignore node_modules and model files
+node_modules/
+Models/
+dist/
+test-results/
+*.gguf
+test-results/
+*.gguf

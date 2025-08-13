@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AI Test Report</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 1rem; }
+      pre { background: #f4f4f4; padding: 1rem; border-radius: 8px; }
+      .pass { color: green; }
+      .fail { color: red; }
+    </style>
+  </head>
+  <body>
+    <h1 class="<%= result.includes('Failed') ? 'fail' : 'pass' %>"><%= result %></h1>
+    <pre><%= logs %></pre>
+  </body>
+</html>

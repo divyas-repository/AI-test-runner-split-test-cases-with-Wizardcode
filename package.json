@@ -1,0 +1,37 @@
+{
+  "name": "ai-test-runner",
+  "version": "1.0.1",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "auto-generate": "ts-node src/auto-csv-generator.ts",
+    "template-generate": "ts-node src/template-generator.ts",
+    "implement-missing": "ts-node src/missing-test-generator.ts",
+    "implement-pattern": "ts-node src/pattern-based-generator.ts",
+    "watch-csv": "ts-node src/csv-watcher.ts",
+    "status-report": "node test-status-report.js",
+    "cleanup": "node cleanup-project.js",
+    "generate-clean": "npm run template-generate && npm run cleanup",
+    "test-clean": "npm test && npm run cleanup",
+    "build-clean": "npm run build && npm run cleanup",
+    "train-llm": "npx ts-node train-llm.ts",
+    "training-summary": "npx ts-node training-summary.ts",
+    "estimate-time": "npx ts-node llm-performance-estimator.ts",
+    "unified-training": "npx ts-node unified-model-training.ts",
+    "verify-cleanup": "npx ts-node model-cleanup-verification.ts",
+    "file-organization": "npx ts-node file-organization-summary.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.8",
+    "gpt4all": "^4.0.0",
+    "open": "^9.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.0",
+    "@types/ejs": "^3.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2"
+  }
+}
