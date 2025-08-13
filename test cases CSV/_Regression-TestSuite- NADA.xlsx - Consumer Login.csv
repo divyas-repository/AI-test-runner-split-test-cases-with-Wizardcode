@@ -1,0 +1,34 @@
+Sl No,Test Case ID,Test Scenario,Module Name,Feature,Test Steps,Test Data,Expected Result,Actual Result,Test Status-Chrome,Bug No,Can we automate,Is automated ?,Comments
+1,TC-NADA-07,"Verify user is redirected to the Login page.
+",Consumer Login,Consumer Login,"1. Launch the application
+2. Click on ""Consumer Login Button"" .
+
+",-,User should be able to redirect to the Consumer Login page.,"User is redirected to Consumer Login page when clicked on 
+""Consumer Login"" button.",Pass,,Yes,Yes,
+2,TC-NADA-08,"Verify user should be able to enter the email and click Submit button.
+",Consumer Login,Consumer Login,"1. Launch the application
+2. Click on ""Consumer Login Button"" .
+3. Click on email box.
+4. Enter email
+5. Click on Submit button.","1. Valid Login Email Address ""testuser@example.com""
+2. Invalid Email Format Email Address ""Ankum@gmail.abc3. Empty Email (Leave blank) 
+4. Unregistered Email Address ""unknownuser@example.com"".
+
+","1. Enter a valid email and click on submit the popup ""A magic link has been sent to your inbox"" should appear.
+2.Error message: ""Invalid email format""
+3. Error message: ""Email is required""
+4. Error message: ""User not found""","1. The magic link is sent to the user's email ID.
+2. The user is redirected to the Application progress page with an ""Email Not Found"" error message.
+3. The user is redirected to the Application progress page with an ""Email Not Found"" error message.
+4. The user is redirected to the Application progress page with an ""Email Not Found"" error message.",Fail,,Yes,Yes,
+3,TC-NADA-09,"Verify that the User is entering a valid Email. The user should receive a popup message saying, ""A magic link has been sent to your email."" ",Consumer Login,Consumer Login,"1. Launch the application
+2. Click on ""Consumer Login Button"" .
+3. Click on email box.
+4. Enter email
+5. Click on Submit button.",-,The Popup message should appear when user click on Submit button after entering Valid email. ,"User can see the Popup ""A magic link has been sent to your email""",Pass,,Yes,Yes,
+4,TC-NADA-10,"Verify by the magic link user should be able the redirect to the Application progress page.""",Consumer Login,Consumer Login,"1. Launch the application
+2. Click on ""Consumer Login Button"" .
+3. Click on email box.
+4. Enter email
+5. Click on Submit button.
+6. Go to email and click on the magic link.",-,1. Clicking on Magic link user should be able to navigate to the Application Progress page.,User can continue the application by clicking on the Magic link.,Pass,,Yes,No,

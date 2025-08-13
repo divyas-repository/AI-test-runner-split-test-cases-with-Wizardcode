@@ -1,0 +1,30 @@
+[
+  {
+    "csvFile": "demo-tests.csv",
+    "generatedScript": "generation-failed",
+    "testCases": 0,
+    "lastGenerated": "2025-08-13T09:50:06.075Z",
+    "status": "failed"
+  },
+  {
+    "csvFile": "sample-test-cases.csv",
+    "generatedScript": "generation-failed",
+    "testCases": 0,
+    "lastGenerated": "2025-08-13T09:50:06.081Z",
+    "status": "failed"
+  },
+  {
+    "csvFile": "test cases CSV\\_Regression-TestSuite- NADA.xlsx - Automation-suite (1).csv",
+    "generatedScript": "generation-failed",
+    "testCases": 0,
+    "lastGenerated": "2025-08-13T09:50:06.086Z",
+    "status": "failed"
+  },
+  {
+    "csvFile": "test cases CSV\\_Regression-TestSuite- NADA.xlsx - Consumer Login.csv",
+    "generatedScript": "generation-failed",
+    "testCases": 0,
+    "lastGenerated": "2025-08-13T09:50:06.092Z",
+    "status": "failed"
+  }
+]

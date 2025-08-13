@@ -1,0 +1,136 @@
+[
+  {
+    "testId": "test-case-1",
+    "title": "Test Case 1 - Apply Now Redirection",
+    "locked": true,
+    "lockedAt": "2025-08-12T12:00:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-12T12:00:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts"
+  },
+  {
+    "testId": "test-case-2",
+    "title": "Test Case 2 - Contact Form Submission",
+    "locked": true,
+    "lockedAt": "2025-08-12T12:00:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-12T12:00:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts"
+  },
+  {
+    "testId": "test-case-3",
+    "title": "Test Case 3 - Property Type Selection",
+    "locked": true,
+    "lockedAt": "2025-08-12T12:00:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-12T12:00:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts"
+  },
+  {
+    "testId": "test-case-4",
+    "title": "Test Case 4 - Financial Information Form",
+    "locked": true,
+    "lockedAt": "2025-08-12T12:00:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-12T12:00:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts"
+  },
+  {
+    "testId": "test-case-5",
+    "title": "Test Case 5 - Credit Score Question",
+    "locked": true,
+    "lockedAt": "2025-08-12T12:00:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-12T12:00:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts"
+  },
+  {
+    "testId": "test-case-6",
+    "title": "Test Case 6 - Complete Application Flow",
+    "locked": true,
+    "lockedAt": "2025-08-12T12:00:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-12T12:00:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts"
+  },
+  {
+    "testId": "test-case-7",
+    "title": "Test Case 7 - Address Information",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  },
+  {
+    "testId": "test-case-8",
+    "title": "Test Case 8 - Employment Information",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  },
+  {
+    "testId": "test-case-9",
+    "title": "Test Case 9 - Income Verification",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  },
+  {
+    "testId": "test-case-10",
+    "title": "Test Case 10 - Document Upload",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  },
+  {
+    "testId": "test-case-11",
+    "title": "Test Case 11 - Application Review",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  },
+  {
+    "testId": "test-case-12",
+    "title": "Test Case 12 - Background Check",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  },
+  {
+    "testId": "test-case-13",
+    "title": "Test Case 13 - Final Verification",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  },
+  {
+    "testId": "test-case-14",
+    "title": "Test Case 14 - Application Submission",
+    "locked": true,
+    "lockedAt": "2025-08-13T08:30:00.000Z",
+    "executionStatus": "passed",
+    "lastExecuted": "2025-08-13T08:30:00.000Z",
+    "filePath": "generated/excel-generated-tests-clean.ts",
+    "lastGenerated": "2025-08-13T07:46:01.853Z"
+  }
+]

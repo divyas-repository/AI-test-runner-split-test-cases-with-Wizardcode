@@ -1,0 +1,126 @@
+{
+  "timestamp": "2025-08-13T09:27:10.756Z",
+  "patterns": [
+    {
+      "category": "URL Navigation Assertions",
+      "description": "Always assert URL changes to verify navigation",
+      "example": "// Navigate and assert URL change\nawait page.getByRole('button', { name: /apply.*now/i }).first().click();\nawait page.waitForURL('**/apply/contact', { timeout: 30000 });\nawait expect(page).toHaveURL(/.*\\/apply\\/contact/);\nconsole.log('✅ Assertion: Successfully navigated to contact page');",
+      "bestPractices": [
+        "Use expect(page).toHaveURL() for every navigation",
+        "Wait for URL change before asserting",
+        "Use regex patterns for flexible URL matching",
+        "Log successful assertions for debugging"
+      ]
+    },
+    {
+      "category": "Field Value Assertions",
+      "description": "Verify field values after filling forms",
+      "example": "// Fill field and assert value\nconst fieldLocator = page.getByPlaceholder(/home.*value/i);\nawait fieldLocator.fill('500000');\nawait expect(fieldLocator).toHaveValue('500000');\nconsole.log('✅ Assertion: Home value filled and verified: 500000');",
+      "bestPractices": [
+        "Assert field values immediately after filling",
+        "Use expect().toHaveValue() for input verification",
+        "Store field locators in variables for reuse",
+        "Include actual values in assertion logs"
+      ]
+    },
+    {
+      "category": "Element Visibility Assertions",
+      "description": "Verify elements are visible before interaction",
+      "example": "// Check visibility before interaction\nconst submitButton = page.getByRole('button', { name: /submit/i });\nawait expect(submitButton).toBeVisible();\nawait expect(submitButton).toBeEnabled();\nconsole.log('✅ Assertion: Submit button is visible and enabled');",
+      "bestPractices": [
+        "Use expect().toBeVisible() before clicking elements",
+        "Check element enabled state when relevant",
+        "Assert element count when dealing with lists",
+        "Verify element text content when important"
+      ]
+    },
+    {
+      "category": "Dynamic Data Generation",
+      "description": "Use timestamps for unique test data",
+      "example": "// Generate unique data for each test run\nconst uniqueSuffix = Date.now().toString().slice(-4);\nconst uniqueEmail = `test.user.${uniqueSuffix}@example.com`;\nawait page.getByPlaceholder(/email/i).fill(uniqueEmail);\nconsole.log(`🔧 Using unique email: ${uniqueEmail}`);",
+      "bestPractices": [
+        "Always use timestamps for unique identifiers",
+        "Create meaningful unique data (emails, names, etc.)",
+        "Log the generated data for debugging",
+        "Use consistent suffix patterns across tests"
+      ]
+    },
+    {
+      "category": "Error Handling with Assertions",
+      "description": "Proper error handling that preserves test failure",
+      "example": "try {\n  // Attempt form filling\n  await page.getByPlaceholder(/field/i).fill('value');\n  await expect(page.getByPlaceholder(/field/i)).toHaveValue('value');\n  console.log('✅ Field filled successfully');\n} catch (error) {\n  console.log('⚠️ Field filling failed:', error.message);\n  throw error; // Re-throw to fail test properly\n}",
+      "bestPractices": [
+        "Always re-throw errors in try-catch blocks",
+        "Include assertion verification in error handling",
+        "Log specific error messages for debugging",
+        "Don't suppress failures - let tests fail appropriately"
+      ]
+    },
+    {
+      "category": "Comprehensive Form Flow",
+      "description": "Complete form navigation with assertions at each step",
+      "example": "// Complete form flow with assertions\nawait page.goto(\"https://nada-hei.onrender.com/\");\nawait expect(page).toHaveURL(/.*nada-hei.onrender.com/);\n\nawait page.getByRole('button', { name: /apply.*now/i }).first().click();\nawait page.waitForURL('**/apply/contact', { timeout: 30000 });\nawait expect(page).toHaveURL(/.*\\/apply\\/contact/);\n\nconst uniqueSuffix = Date.now().toString().slice(-4);\nawait fillContactAndHomeshares(page, uniqueSuffix);\n\nawait page.getByRole('button', { name: /next/i }).click();\nawait page.waitForURL('**/apply/home-value', { timeout: 30000 });\nawait expect(page).toHaveURL(/.*\\/apply\\/home-value/);",
+      "bestPractices": [
+        "Assert URL at every navigation step",
+        "Use helper functions for common operations",
+        "Include timeouts for all waitForURL calls",
+        "Verify form progression systematically"
+      ]
+    },
+    {
+      "category": "Multiple Element Handling",
+      "description": "Handle arrays of form fields with assertions",
+      "example": "// Handle multiple fields with validation\nconst formFields = [\n  { placeholder: 'First Name', value: `John${uniqueSuffix}` },\n  { placeholder: 'Last Name', value: `Doe${uniqueSuffix}` },\n  { placeholder: 'Email', value: `test.${uniqueSuffix}@example.com` }\n];\n\nfor (const field of formFields) {\n  const fieldLocator = page.getByPlaceholder(new RegExp(field.placeholder, 'i'));\n  if (await fieldLocator.isVisible()) {\n    await fieldLocator.fill(field.value);\n    await expect(fieldLocator).toHaveValue(field.value);\n    console.log(`✅ Assertion: ${field.placeholder} filled and verified: ${field.value}`);\n  }\n}",
+      "bestPractices": [
+        "Use arrays for systematic field handling",
+        "Check visibility before attempting to fill",
+        "Assert each field value after filling",
+        "Use regex for flexible placeholder matching"
+      ]
+    },
+    {
+      "category": "Dropdown and Select Assertions",
+      "description": "Handle dropdowns with proper verification",
+      "example": "// Handle dropdown with assertions\nawait page.locator('[role=\"combobox\"]').click();\nawait expect(page.locator('[role=\"listbox\"]')).toBeVisible();\nconsole.log('✅ Assertion: Dropdown options are visible');\n\nawait page.locator('[role=\"option\"]').first().click();\nconst selectedValue = await page.locator('[role=\"combobox\"]').textContent();\nconsole.log(`✅ Assertion: Selected dropdown value: ${selectedValue}`);",
+      "bestPractices": [
+        "Assert dropdown opens before selecting options",
+        "Verify option selection after clicking",
+        "Log the selected values for debugging",
+        "Handle Material-UI and standard dropdowns differently"
+      ]
+    },
+    {
+      "category": "Page State Verification",
+      "description": "Verify page state and element counts",
+      "example": "// Verify page elements and state\nconst buttons = page.getByRole('button');\nconst buttonCount = await buttons.count();\nawait expect(buttons).toHaveCountGreaterThan(0);\nconsole.log(`✅ Assertion: Found ${buttonCount} buttons on page`);\n\nconst heading = page.getByRole('heading', { name: /property|address/i });\nawait expect(heading).toBeVisible();\nconsole.log('✅ Assertion: Page heading is visible');",
+      "bestPractices": [
+        "Count elements to verify page loaded correctly",
+        "Assert presence of key page elements",
+        "Use descriptive console logs for state verification",
+        "Check for expected vs actual element counts"
+      ]
+    },
+    {
+      "category": "Test Structure and Organization",
+      "description": "Proper test structure with comprehensive logging",
+      "example": "test('Test Case X - Descriptive Title', async ({ page }) => {\n  test.setTimeout(120000);\n  \n  console.log('🚀 Starting: Test Case X - Descriptive Title');\n  \n  await page.goto(\"https://nada-hei.onrender.com/\");\n  await expect(page).toHaveURL(/.*nada-hei.onrender.com/);\n  console.log('✅ Assertion: Homepage loaded');\n  \n  // Test implementation with assertions...\n  \n  console.log('✅ Test Case X completed successfully');\n});",
+      "bestPractices": [
+        "Always set test timeout to 120000ms",
+        "Start with descriptive console log",
+        "Assert homepage loading first",
+        "End with completion confirmation",
+        "Use emoji for visual log categorization"
+      ]
+    }
+  ],
+  "successfulImplementations": "",
+  "lessonsLearned": [
+    "URL assertions are critical for navigation verification",
+    "Field value assertions prevent silent form filling failures",
+    "Element visibility checks prevent interaction errors",
+    "Comprehensive error handling maintains test reliability",
+    "Dynamic data generation ensures test repeatability",
+    "Detailed logging enables effective debugging",
+    "Systematic form flow prevents navigation issues"
+  ]
+}

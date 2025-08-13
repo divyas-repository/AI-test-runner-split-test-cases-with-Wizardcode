@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { CodeValidator } from './code-validator';
 import path from 'path';
 import { createCompletion, loadModel } from 'gpt4all';
 import { buildPrompt } from './prompt';
@@ -21,8 +22,24 @@ export async function generateTestScript() {
     console.log('Sending prompt to model...');
     const res = await createCompletion(model, prompt);
     const outputPath = path.join(__dirname, '../generated-test.spec.ts');
-    fs.writeFileSync(outputPath, res.choices[0].message.content);
-    console.log(`✅ Generated test case saved to: ${outputPath}`);
+    
+    const generatedContent = res.choices[0].message.content;
+    
+    // Validate generated content before writing
+    const validation = CodeValidator.validateContent(generatedContent, outputPath);
+    if (!validation.valid) {
+      console.log('❌ Generated code validation failed:');
+      validation.errors.forEach(error => console.log(`   ${error}`));
+      throw new Error('Generated code failed validation - preventing empty/invalid file creation');
+    }
+    
+    // Use validated file creation
+    const success = await CodeValidator.createValidatedFile(outputPath, generatedContent);
+    if (success) {
+      console.log(`✅ Generated validated test case saved to: ${outputPath}`);
+    } else {
+      throw new Error('Failed to create validated test file');
+    }
   } catch (err) {
     console.error('❌ Error generating test case:', err);
   } finally {

@@ -1,0 +1,6 @@
+id,title,description,steps
+test-case-1,Test Case 1 - Apply Now Redirection,Verify the user is redirected to the Application progress page by clicking on Apply Now,1. Launch the application https://nada-hei.onrender.com/ 2. Click on Apply Now
+test-case-2,Test Case 2 - Contact Form Submission,Verify user can fill out the contact form and proceed to next step,1. Navigate to contact page 2. Fill contact form with valid data 3. Click Next
+test-case-3,Test Case 3 - Property Type Selection,Verify user can select property type and fill property details,1. Navigate to property page 2. Fill home value 3. Fill mortgage balance 4. Select property type
+test-case-4,Test Case 4 - Financial Information Form,Verify user can complete financial information section,1. Navigate through contact and property pages 2. Complete credit score selection 3. Fill address information
+test-case-5,Test Case 5 - Credit Score Question,Verify user can answer credit score questions,1. Navigate to credit score page 2. Select credit score option 3. Proceed to next step
