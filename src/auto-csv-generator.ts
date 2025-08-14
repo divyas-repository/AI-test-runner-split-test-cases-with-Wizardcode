@@ -3,6 +3,7 @@ import fs from 'fs';
 import { loadModel, createCompletion } from 'gpt4all';
 import { CodeValidator } from './code-validator';
 import { UNIFIED_LLM_CONFIG, getModelPath, getModelName, getConfigSummary } from './unified-llm-config';
+import { ProjectCleaner } from './auto-cleanup';
 
 /**
  * Automatic CSV Test Generator
@@ -335,6 +336,15 @@ export async function processAllCSVFiles(): Promise<void> {
       .forEach(mapping => {
         console.log(`   📄 ${mapping.csvFile} → 🤖 ${mapping.generatedScript}`);
       });
+  }
+  
+  // Auto-cleanup after generation
+  console.log('\n🧹 Running automatic cleanup...');
+  try {
+    const cleaner = new ProjectCleaner();
+    await cleaner.cleanProject();
+  } catch (error) {
+    console.warn('⚠️  Cleanup warning:', error);
   }
 }
 

@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { CodeValidator } from './code-validator';
+import { ProjectCleaner } from './auto-cleanup';
 
 /**
  * Template-based CSV Test Generator
@@ -428,6 +429,15 @@ export async function processAllCSVFiles(): Promise<void> {
     console.log('   1. Review generated scripts in the /generated folder');
     console.log('   2. Customize the test implementations for your application');
     console.log('   3. Run tests: npx playwright test generated/');
+  }
+  
+  // Auto-cleanup after generation
+  console.log('\n🧹 Running automatic cleanup...');
+  try {
+    const cleaner = new ProjectCleaner();
+    await cleaner.cleanProject();
+  } catch (error) {
+    console.warn('⚠️  Cleanup warning:', error);
   }
 }
 

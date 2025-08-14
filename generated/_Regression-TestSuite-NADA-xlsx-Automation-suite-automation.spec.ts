@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 /**
- * Automated Test Suite Generated from: _Regression-TestSuite- NADA.xlsx - Automation-suite (1).csv
- * Generated on: 2025-08-14T05:23:58.106Z
+ * Automated Test Suite Generated from: _Regression-TestSuite- NADA.xlsx - Automation-suite.csv
+ * Generated on: 2025-08-14T05:23:58.098Z
  * Total Test Cases: 9
  */
 
