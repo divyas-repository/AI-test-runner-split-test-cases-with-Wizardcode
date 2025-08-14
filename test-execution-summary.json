@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-08-14T05:49:36.914Z",
+  "testFile": "generated/excel-generated-tests-clean.spec.ts",
+  "configuration": {
+    "testFile": "generated/excel-generated-tests-clean.spec.ts",
+    "headed": false,
+    "timeout": 120000,
+    "workers": 1,
+    "autoOpenReport": true,
+    "generateCleanup": true
+  },
+  "reportLocation": "playwright-report/index.html",
+  "status": "completed"
+}

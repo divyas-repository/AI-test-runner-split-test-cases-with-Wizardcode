@@ -1,30 +1,16 @@
 [
   {
-    "csvFile": "my-test-cases.csv\\_Regression-TestSuite- NADA.xlsx - Automation-suite.csv",
-    "generatedScript": "generated\\_Regression-TestSuite-NADA-xlsx-Automation-suite-automation.spec.ts",
-    "testCases": 9,
-    "lastGenerated": "2025-08-14T05:23:58.101Z",
-    "status": "success"
+    "csvFile": "_Regression-TestSuite- NADA.xlsx - Apply now.spec.csv",
+    "generatedScript": "generation-failed",
+    "testCases": 0,
+    "lastGenerated": "2025-08-14T07:59:02.406Z",
+    "status": "failed"
   },
   {
-    "csvFile": "sample-test-cases.csv",
-    "generatedScript": "generated\\sample-test-cases-automation.spec.ts",
-    "testCases": 5,
-    "lastGenerated": "2025-08-14T05:23:58.104Z",
-    "status": "success"
-  },
-  {
-    "csvFile": "test cases CSV\\_Regression-TestSuite- NADA.xlsx - Automation-suite (1).csv",
-    "generatedScript": "generated\\_Regression-TestSuite-NADA-xlsx-Automation-suite-1-automation.spec.ts",
-    "testCases": 9,
-    "lastGenerated": "2025-08-14T05:23:58.108Z",
-    "status": "success"
-  },
-  {
-    "csvFile": "test cases CSV\\_Regression-TestSuite- NADA.xlsx - Consumer Login.csv",
-    "generatedScript": "generated\\_Regression-TestSuite-NADA-xlsx-Consumer-Login-automation.spec.ts",
-    "testCases": 2,
-    "lastGenerated": "2025-08-14T05:23:58.111Z",
-    "status": "success"
+    "csvFile": "_Regression-TestSuite- NADA.xlsx - Consumer Login.csv",
+    "generatedScript": "generation-failed",
+    "testCases": 0,
+    "lastGenerated": "2025-08-14T07:59:02.412Z",
+    "status": "failed"
   }
 ]

@@ -200,12 +200,15 @@ class ProjectCleaner {
           redundantFiles.push(`generated/${file}`);
         }
         
-        // Remove sample test files
-        if (file.startsWith('sample-test-cases-') && file.endsWith('.spec.ts')) {
-          redundantFiles.push(`generated/${file}`);
-        }
-        
-        // Remove duplicate automation suite files (keep only the main one)
+    // Remove sample test files
+    if (file.startsWith('sample-test-cases-') && file.endsWith('.spec.ts')) {
+      redundantFiles.push(`generated/${file}`);
+    }
+    
+    // Remove any .ts files that are not .spec.ts in generated folder
+    if (file.endsWith('.ts') && !file.endsWith('.spec.ts')) {
+      redundantFiles.push(`generated/${file}`);
+    }        // Remove duplicate automation suite files (keep only the main one)
         if (file.includes('Automation-suite-1-automation') || 
             (file.includes('Automation-suite-automation') && !file.includes('clean'))) {
           redundantFiles.push(`generated/${file}`);
@@ -241,15 +244,31 @@ class ProjectCleaner {
       'train-llm.ts',
       'lessons-learned.txt',
       'demo-tests.csv',
-      'EXCEL-README.md'
+      'EXCEL-README.md',
+      'sample-test-cases.csv'
     ];
     
-    for (const file of utilityFiles) {
+    // Also remove any my-test-cases.csv folder (duplicate)
+    const duplicateFolders = ['my-test-cases.csv'];
+    
+    utilityFiles.forEach(file => {
       const fullPath = path.join(this.projectRoot, file);
       if (fs.existsSync(fullPath) && !this.isProtected(file)) {
         this.deleteFile(fullPath, `Unused utility: ${file}`);
       }
-    }
+    });
+    
+    duplicateFolders.forEach(folder => {
+      const fullPath = path.join(this.projectRoot, folder);
+      if (fs.existsSync(fullPath)) {
+        try {
+          fs.rmSync(fullPath, { recursive: true, force: true });
+          console.log(`🗑️  Deleted: Duplicate folder: ${folder}`);
+        } catch (error) {
+          console.warn(`⚠️  Could not delete ${fullPath}: ${error}`);
+        }
+      }
+    });
   }
 
   private async updatePackageJsonScripts(): Promise<void> {

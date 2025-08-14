@@ -73,6 +73,19 @@ export function getModelName(): string {
 }
 
 /**
+ * Get complete model configuration for GPT4All
+ */
+export function getModelConfig() {
+  return {
+    modelPath: getModelPath(),
+    verbose: true,
+    allowDownload: false,
+    device: 'cpu',
+    systemPrompt: 'You are an expert automation test generator. Generate clean, working Playwright TypeScript code.'
+  };
+}
+
+/**
  * Get unified configuration summary
  */
 export function getConfigSummary(): string {
