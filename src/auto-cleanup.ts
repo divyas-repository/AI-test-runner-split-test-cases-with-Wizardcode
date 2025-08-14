@@ -189,13 +189,30 @@ class ProjectCleaner {
       'generated/regenerated-tests.ts'
     ];
     
-    // Check for batch files
+    // Check for duplicate and template files
     const generatedDir = path.join(this.projectRoot, 'generated');
     if (fs.existsSync(generatedDir)) {
       const files = fs.readdirSync(generatedDir);
       
       for (const file of files) {
+        // Remove test-case-batch files
         if (file.startsWith('test-case-batch-') && file.endsWith('.ts')) {
+          redundantFiles.push(`generated/${file}`);
+        }
+        
+        // Remove sample test files
+        if (file.startsWith('sample-test-cases-') && file.endsWith('.spec.ts')) {
+          redundantFiles.push(`generated/${file}`);
+        }
+        
+        // Remove duplicate automation suite files (keep only the main one)
+        if (file.includes('Automation-suite-1-automation') || 
+            (file.includes('Automation-suite-automation') && !file.includes('clean'))) {
+          redundantFiles.push(`generated/${file}`);
+        }
+        
+        // Remove basic template files for consumer login
+        if (file.includes('Consumer-Login-automation.spec.ts')) {
           redundantFiles.push(`generated/${file}`);
         }
       }
